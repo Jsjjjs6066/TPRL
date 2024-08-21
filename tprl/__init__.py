@@ -76,7 +76,7 @@ class Page:
 
         print(self.text_to_be_rendered) # Actually renders all the elements
 
-        self.set_title(self.title)
+        self.set_title(self.title) # Set the title
 
 def load_file(filePath: str) -> dict:
     """Loads the `filePath` as a path to the file which is then turned into a `dict` object. """
@@ -85,14 +85,14 @@ def load_file(filePath: str) -> dict:
 
 def decode_element(encoded_element: list[Union[str, Any]]) -> Element:
     """Decodes a `list` to an `Element`. """
-    for registeredElement in ElementRegistry:
-        if encoded_element[0] == registeredElement.refName:
+    for registeredElement in ElementRegistry: # Checking every element
+        if encoded_element[0] == registeredElement.refName: # Checks if the names match
             if len(encoded_element) == 1:
-                return registeredElement.elementType()
+                return registeredElement.elementType() # No args
             elif len(encoded_element) == 2:
-                return registeredElement.elementType(encoded_element[1])
+                return registeredElement.elementType(encoded_element[1]) # 1 arg
             else:
-                return registeredElement.elementType(encoded_element[1], encoded_element[2])
+                return registeredElement.elementType(encoded_element[1], encoded_element[2]) # 2 args
 
 def main() -> None:
     """Main function. """
